@@ -13,10 +13,15 @@ object Problem12 extends App {
 
 //  triangleNumbers take 10 foreach println
   def numFactors(n: Int): Int = {
-    Stream.range(2, Math.sqrt(n).toInt).filter(divisor => n % divisor == 0 && n / divisor > divisor).length * 2 + 2
+    val sqRoot = Math.sqrt(n)
+    val count = Stream.range(2, sqRoot.toInt).filter(divisor => n % divisor == 0 && n / divisor > divisor).length * 2 + 2
+    if (sqRoot == sqRoot.toInt)
+      count + 1
+    else
+      count
   }
 
-//  println(numFactors(21))
+//  println(numFactors(25))
 
   triangleNumbers.find(numFactors(_) > 500) match {
     case Some(num) => println(s"$num is the first triangle number that has over 500 divisors")
