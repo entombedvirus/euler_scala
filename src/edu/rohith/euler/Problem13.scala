@@ -110,9 +110,13 @@ object Problem13 extends App {
     "53503534226472524250874054075591789781264330331690"
   )
 
-  val first10Digits = largeNumbers.foldLeft(BigInt(0)) {_ + BigInt(_)}.toString().take(10)
+  // Method 1: Only add the first 11 digits to find out the first 10 digits of the sum
+  val first10Digits = (BigInt(0) /: largeNumbers.map{n => BigInt(n.take(11))}) {_ + _}.toString().take(10)
 
-// Alternate method
+  // Method 2: Do the full sum using BigInt
+//  val first10Digits = largeNumbers.foldLeft(BigInt(0)) {_ + BigInt(_)}.toString().take(10)
+
+// Method 3: do manual sum and carries
 //  val columnarSums = Range(49, -1, -1).map {i =>
 //    largeNumbers.map {num =>
 //      Integer.parseInt(num.charAt(i).toString)
